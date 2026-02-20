@@ -4,6 +4,15 @@ import * as topojson from 'topojson-client';
 import { COUNTRIES, ETHNIC_GROUPS, ETHNIC_COLORS, COUNTRY_CENTROIDS } from '../data/countries.js';
 import { MIGRATION_CORRIDORS } from '../data/migrationCorridors.js';
 
+// Get dominant ethnic color for a corridor
+function getCorridorColors(ethnicProfile) {
+    if (!ethnicProfile) return [{ color: '#4fc3f7', share: 1 }];
+    return ETHNIC_GROUPS
+        .filter(g => (ethnicProfile[g.id] || 0) >= 0.1)
+        .map(g => ({ color: g.color, share: ethnicProfile[g.id] || 0, id: g.id }))
+        .sort((a, b) => b.share - a.share);
+}
+
 const WORLD_ATLAS_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
 // Map numeric ISO to our country codes
@@ -72,10 +81,13 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
         return () => ro.disconnect();
     }, []);
 
-    // Projection & path
+    // Projection & path — centered properly with padding
     const { projection, path } = useMemo(() => {
+        const pad = 10;
+        const w = dimensions.width - pad * 2;
+        const h = dimensions.height - pad * 2;
         const proj = d3.geoNaturalEarth1()
-            .fitSize([dimensions.width, dimensions.height], { type: 'Sphere' });
+            .fitExtent([[pad, pad], [pad + w, pad + h]], { type: 'Sphere' });
         return { projection: proj, path: d3.geoPath(proj) };
     }, [dimensions]);
 
@@ -164,23 +176,26 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
                     const midY = Math.min(arc.fromXY[1], arc.toXY[1]) - 30;
                     const d = `M${arc.fromXY[0]},${arc.fromXY[1]} Q${midX},${midY} ${arc.toXY[0]},${arc.toXY[1]}`;
                     const thickness = Math.max(0.5, Math.min(3, arc.baseFlow / 100));
+                    const colors = getCorridorColors(arc.ethnicProfile);
 
                     return (
                         <g key={arc.id}>
                             <path
                                 d={d}
                                 className="migration-arc"
-                                stroke="rgba(79, 195, 247, 0.3)"
+                                stroke="rgba(255,255,255,0.08)"
                                 strokeWidth={thickness}
                             />
-                            {/* Animated particle */}
-                            <circle r={2} fill="#4fc3f7" opacity="0.8">
-                                <animateMotion
-                                    dur={`${3 + i * 0.2}s`}
-                                    repeatCount="indefinite"
-                                    path={d}
-                                />
-                            </circle>
+                            {/* Multi-colored animated particles */}
+                            {colors.map((c, ci) => (
+                                <circle key={`${arc.id}-${c.id}`} r={Math.max(1.5, 3 * c.share)} fill={c.color} opacity="0.9">
+                                    <animateMotion
+                                        dur={`${3 + i * 0.15 + ci * 0.8}s`}
+                                        repeatCount="indefinite"
+                                        path={d}
+                                    />
+                                </circle>
+                            ))}
                         </g>
                     );
                 })}
