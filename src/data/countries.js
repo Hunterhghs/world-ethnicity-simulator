@@ -127,7 +127,7 @@ export const COUNTRIES = {
     "gdppc": 52000
   },
   "FRA": {
-    "name": "France (incl. overseas)",
+    "name": "France",
     "region": "europe",
     "iso": "FRA",
     "isoN": 250,
@@ -152,6 +152,33 @@ export const COUNTRIES = {
     },
     "cdr": 9.7,
     "gdppc": 44000
+  },
+  "GUF": {
+    "name": "French Guiana",
+    "region": "latinAmerica",
+    "iso": "GUF",
+    "isoN": 254,
+    "pop2025": 0.31,
+    "ethnicity": {
+      "european": 0.12,
+      "african": 0.35,
+      "eastAsian": 0.05,
+      "southAsian": 0.02,
+      "latinMestizo": 0.35,
+      "mena": 0.01,
+      "mixed": 0.10
+    },
+    "tfr": {
+      "european": 1.6,
+      "african": 2.5,
+      "eastAsian": 1.4,
+      "southAsian": 1.8,
+      "latinMestizo": 2.2,
+      "mena": 1.8,
+      "mixed": 2.0
+    },
+    "cdr": 3.5,
+    "gdppc": 18000
   },
   "ITA": {
     "name": "Italy",

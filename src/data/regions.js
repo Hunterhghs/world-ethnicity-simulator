@@ -35,7 +35,7 @@ export const REGIONS = {
     },
     latinAmerica: {
         label: 'Latin America',
-        countries: ['MEX', 'BRA', 'COL', 'ARG', 'PER', 'VEN', 'CHL', 'ECU', 'GTM', 'CUB', 'BOL', 'DOM', 'HND', 'PRY', 'SLV', 'NIC', 'CRI', 'PAN', 'URY', 'JAM', 'HTI', 'GUY', 'TTO'],
+        countries: ['MEX', 'BRA', 'COL', 'ARG', 'PER', 'VEN', 'CHL', 'ECU', 'GTM', 'CUB', 'BOL', 'DOM', 'HND', 'PRY', 'SLV', 'NIC', 'CRI', 'PAN', 'URY', 'JAM', 'HTI', 'GUY', 'TTO', 'GUF'],
         color: '#e74c3c',
     },
     oceania: {
