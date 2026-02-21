@@ -11,6 +11,7 @@ import KPIStrip from './components/KPIStrip.jsx';
 import CountryDetail from './components/CountryDetail.jsx';
 import MethodologyPanel from './components/MethodologyPanel.jsx';
 import ExportButton from './components/ExportButton.jsx';
+import Icon from './components/Icons.jsx';
 
 export default function App() {
     const [projections, setProjections] = useState(null);
@@ -20,6 +21,7 @@ export default function App() {
     const [selectedCountry, setSelectedCountry] = useState(null);
     const [playing, setPlaying] = useState(false);
     const [speed, setSpeed] = useState(1);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     // Precompute on mount
     useEffect(() => {
@@ -92,6 +94,14 @@ export default function App() {
                         Calibrated from UN DESA, World Bank, OECD Migration Data
                     </div>
                     <div className="header-year">{year}</div>
+                    <button className="mobile-sidebar-toggle" onClick={() => setSidebarOpen(prev => !prev)}>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                            {sidebarOpen
+                                ? <><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></>
+                                : <><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></>
+                            }
+                        </svg>
+                    </button>
                 </div>
             </header>
 
@@ -116,15 +126,18 @@ export default function App() {
                 setSpeed={setSpeed}
             />
 
+            {/* Backdrop for mobile sidebar */}
+            <div className={`sidebar-backdrop ${sidebarOpen ? 'visible' : ''}`} onClick={() => setSidebarOpen(false)} />
+
             {/* Sidebar */}
-            <aside className="sidebar">
+            <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
                 <ScenarioPanel scenario={scenario} setScenario={setScenario} />
                 <DriverControls />
 
                 {/* Legend */}
                 <div className="panel">
                     <div className="panel-header">
-                        <span className="panel-icon">🎨</span>
+                        <Icon name="palette" size={16} />
                         <span className="panel-title">Ethnic Groups</span>
                     </div>
                     <div className="legend">
@@ -141,7 +154,7 @@ export default function App() {
                 <MethodologyPanel />
 
                 <div className="disclaimer">
-                    ⚠️ These are <strong>scenario projections</strong> under explicit assumptions, not predictions.
+                    <Icon name="warning" size={12} /> These are <strong>scenario projections</strong> under explicit assumptions, not predictions.
                     Ethnicity categories are approximate social groupings using broad continental/ancestral proxies.
                     Where direct data is unavailable, region-of-origin proxies are used and flagged as estimates.
                     Small subgroup shares (&lt;0.5%) are suppressed. All data is aggregated from public sources.

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Icon from './Icons.jsx';
 
 export default function MethodologyPanel() {
     const [open, setOpen] = useState(false);
@@ -6,7 +7,7 @@ export default function MethodologyPanel() {
     return (
         <div>
             <button className="methodology-toggle" onClick={() => setOpen(!open)}>
-                <span>📐</span>
+                <Icon name="settings" size={14} />
                 <span>Methodology & Sources</span>
                 <span style={{ marginLeft: 'auto' }}>{open ? '▲' : '▼'}</span>
             </button>
@@ -64,7 +65,7 @@ export default function MethodologyPanel() {
                     </ul>
 
                     <div className="caveat-box">
-                        <p><strong>⚠️ Important Caveats:</strong></p>
+                        <p><strong>Important Caveats:</strong></p>
                         <p>• These are scenario projections, not predictions. Actual outcomes depend on policy, social norms, economic shocks, and other unmodeled factors.</p>
                         <p>• Ethnicity categories are broad, approximate social groupings — not biological or fixed categories.</p>
                         <p>• Where direct ethnicity data is unavailable, region-of-origin proxies are used.</p>

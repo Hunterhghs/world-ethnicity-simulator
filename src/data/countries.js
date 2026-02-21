@@ -4121,6 +4121,1167 @@ export const COUNTRIES = {
     },
     "cdr": 6,
     "gdppc": 4800
+  },
+  "BRA": {
+    "name": "Brazil",
+    "region": "southAmerica",
+    "iso": "BRA",
+    "isoN": 76,
+    "pop2025": 216,
+    "ethnicity": {
+      "european": 0.43,
+      "african": 0.09,
+      "eastAsian": 0.015,
+      "southAsian": 0.005,
+      "latinMestizo": 0.38,
+      "mena": 0.01,
+      "mixed": 0.07
+    },
+    "tfr": {
+      "european": 1.55,
+      "african": 1.75,
+      "eastAsian": 1.3,
+      "southAsian": 1.5,
+      "latinMestizo": 1.65,
+      "mena": 1.6,
+      "mixed": 1.6
+    },
+    "cdr": 6.6,
+    "gdppc": 9000
+  },
+  "ARG": {
+    "name": "Argentina",
+    "region": "southAmerica",
+    "iso": "ARG",
+    "isoN": 32,
+    "pop2025": 46,
+    "ethnicity": {
+      "european": 0.62,
+      "african": 0.01,
+      "eastAsian": 0.01,
+      "southAsian": 0.005,
+      "latinMestizo": 0.30,
+      "mena": 0.02,
+      "mixed": 0.035
+    },
+    "tfr": {
+      "european": 1.55,
+      "african": 1.7,
+      "eastAsian": 1.3,
+      "southAsian": 1.5,
+      "latinMestizo": 1.7,
+      "mena": 1.6,
+      "mixed": 1.6
+    },
+    "cdr": 7.6,
+    "gdppc": 13500
+  },
+  "AUS": {
+    "name": "Australia",
+    "region": "oceania",
+    "iso": "AUS",
+    "isoN": 36,
+    "pop2025": 26.5,
+    "ethnicity": {
+      "european": 0.67,
+      "african": 0.015,
+      "eastAsian": 0.14,
+      "southAsian": 0.07,
+      "latinMestizo": 0.005,
+      "mena": 0.02,
+      "mixed": 0.08
+    },
+    "tfr": {
+      "european": 1.58,
+      "african": 1.8,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.8,
+      "mixed": 1.6
+    },
+    "cdr": 6.5,
+    "gdppc": 55000
+  },
+  "NZL": {
+    "name": "New Zealand",
+    "region": "oceania",
+    "iso": "NZL",
+    "isoN": 554,
+    "pop2025": 5.2,
+    "ethnicity": {
+      "european": 0.64,
+      "african": 0.01,
+      "eastAsian": 0.16,
+      "southAsian": 0.04,
+      "latinMestizo": 0.005,
+      "mena": 0.01,
+      "mixed": 0.135
+    },
+    "tfr": {
+      "european": 1.6,
+      "african": 1.8,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.8,
+      "mixed": 1.6
+    },
+    "cdr": 7,
+    "gdppc": 42000
+  },
+  "COL": {
+    "name": "Colombia",
+    "region": "southAmerica",
+    "iso": "COL",
+    "isoN": 170,
+    "pop2025": 52,
+    "ethnicity": {
+      "european": 0.20,
+      "african": 0.07,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0.58,
+      "mena": 0.01,
+      "mixed": 0.13
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 1.3,
+      "southAsian": 1.5,
+      "latinMestizo": 1.7,
+      "mena": 1.6,
+      "mixed": 1.6
+    },
+    "cdr": 5.6,
+    "gdppc": 6600
+  },
+  "PER": {
+    "name": "Peru",
+    "region": "southAmerica",
+    "iso": "PER",
+    "isoN": 604,
+    "pop2025": 34,
+    "ethnicity": {
+      "european": 0.12,
+      "african": 0.02,
+      "eastAsian": 0.02,
+      "southAsian": 0.005,
+      "latinMestizo": 0.72,
+      "mena": 0.005,
+      "mixed": 0.05
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.7,
+      "eastAsian": 1.3,
+      "southAsian": 1.5,
+      "latinMestizo": 1.9,
+      "mena": 1.6,
+      "mixed": 1.6
+    },
+    "cdr": 5.8,
+    "gdppc": 7000
+  },
+  "VEN": {
+    "name": "Venezuela",
+    "region": "southAmerica",
+    "iso": "VEN",
+    "isoN": 862,
+    "pop2025": 28.5,
+    "ethnicity": {
+      "european": 0.25,
+      "african": 0.04,
+      "eastAsian": 0.01,
+      "southAsian": 0.005,
+      "latinMestizo": 0.55,
+      "mena": 0.02,
+      "mixed": 0.125
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.7,
+      "eastAsian": 1.3,
+      "southAsian": 1.5,
+      "latinMestizo": 1.8,
+      "mena": 1.6,
+      "mixed": 1.6
+    },
+    "cdr": 5.4,
+    "gdppc": 3200
+  },
+  "CHL": {
+    "name": "Chile",
+    "region": "southAmerica",
+    "iso": "CHL",
+    "isoN": 152,
+    "pop2025": 19.5,
+    "ethnicity": {
+      "european": 0.44,
+      "african": 0.005,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0.47,
+      "mena": 0.01,
+      "mixed": 0.06
+    },
+    "tfr": {
+      "european": 1.45,
+      "african": 1.7,
+      "eastAsian": 1.3,
+      "southAsian": 1.5,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.5
+    },
+    "cdr": 6.5,
+    "gdppc": 16000
+  },
+  "ECU": {
+    "name": "Ecuador",
+    "region": "southAmerica",
+    "iso": "ECU",
+    "isoN": 218,
+    "pop2025": 18,
+    "ethnicity": {
+      "european": 0.10,
+      "african": 0.05,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0.72,
+      "mena": 0.005,
+      "mixed": 0.115
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 1.3,
+      "southAsian": 1.5,
+      "latinMestizo": 1.9,
+      "mena": 1.6,
+      "mixed": 1.6
+    },
+    "cdr": 5.2,
+    "gdppc": 6200
+  },
+  "BOL": {
+    "name": "Bolivia",
+    "region": "southAmerica",
+    "iso": "BOL",
+    "isoN": 68,
+    "pop2025": 12.2,
+    "ethnicity": {
+      "european": 0.05,
+      "african": 0.01,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0.84,
+      "mena": 0.005,
+      "mixed": 0.085
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 1.3,
+      "southAsian": 1.5,
+      "latinMestizo": 2.2,
+      "mena": 1.6,
+      "mixed": 1.7
+    },
+    "cdr": 6.5,
+    "gdppc": 3600
+  },
+  "PRY": {
+    "name": "Paraguay",
+    "region": "southAmerica",
+    "iso": "PRY",
+    "isoN": 600,
+    "pop2025": 7.4,
+    "ethnicity": {
+      "european": 0.15,
+      "african": 0.01,
+      "eastAsian": 0.01,
+      "southAsian": 0.005,
+      "latinMestizo": 0.70,
+      "mena": 0.01,
+      "mixed": 0.115
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.7,
+      "eastAsian": 1.3,
+      "southAsian": 1.5,
+      "latinMestizo": 1.9,
+      "mena": 1.6,
+      "mixed": 1.6
+    },
+    "cdr": 5.2,
+    "gdppc": 5800
+  },
+  "URY": {
+    "name": "Uruguay",
+    "region": "southAmerica",
+    "iso": "URY",
+    "isoN": 858,
+    "pop2025": 3.5,
+    "ethnicity": {
+      "european": 0.83,
+      "african": 0.04,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0.08,
+      "mena": 0.005,
+      "mixed": 0.035
+    },
+    "tfr": {
+      "european": 1.45,
+      "african": 1.7,
+      "eastAsian": 1.3,
+      "southAsian": 1.5,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.5
+    },
+    "cdr": 9.4,
+    "gdppc": 18000
+  },
+  "GUY": {
+    "name": "Guyana",
+    "region": "southAmerica",
+    "iso": "GUY",
+    "isoN": 328,
+    "pop2025": 0.8,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.29,
+      "eastAsian": 0.01,
+      "southAsian": 0.40,
+      "latinMestizo": 0.005,
+      "mena": 0.005,
+      "mixed": 0.285
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.9,
+      "eastAsian": 1.3,
+      "southAsian": 1.8,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.7
+    },
+    "cdr": 7.5,
+    "gdppc": 14000
+  },
+  "PNG": {
+    "name": "Papua New Guinea",
+    "region": "oceania",
+    "iso": "PNG",
+    "isoN": 598,
+    "pop2025": 10,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.005,
+      "eastAsian": 0.96,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.02
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 2.8,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 7,
+    "gdppc": 2800
+  },
+  "MNG": {
+    "name": "Mongolia",
+    "region": "eastAsia",
+    "iso": "MNG",
+    "isoN": 496,
+    "pop2025": 3.4,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.005,
+      "eastAsian": 0.96,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.02
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 2.5,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 6.2,
+    "gdppc": 4500
+  },
+  "MMR": {
+    "name": "Myanmar",
+    "region": "southeastAsia",
+    "iso": "MMR",
+    "isoN": 104,
+    "pop2025": 54,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.005,
+      "eastAsian": 0.90,
+      "southAsian": 0.05,
+      "latinMestizo": 0,
+      "mena": 0.01,
+      "mixed": 0.03
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 2.0,
+      "southAsian": 1.8,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.7
+    },
+    "cdr": 8.2,
+    "gdppc": 1200
+  },
+  "LAO": {
+    "name": "Laos",
+    "region": "southeastAsia",
+    "iso": "LAO",
+    "isoN": 418,
+    "pop2025": 7.5,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.005,
+      "eastAsian": 0.96,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.02
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 2.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 6.5,
+    "gdppc": 2700
+  },
+  "KHM": {
+    "name": "Cambodia",
+    "region": "southeastAsia",
+    "iso": "KHM",
+    "isoN": 116,
+    "pop2025": 17,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.005,
+      "eastAsian": 0.95,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.03
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 2.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 6,
+    "gdppc": 1700
+  },
+  "NPL": {
+    "name": "Nepal",
+    "region": "southAsia",
+    "iso": "NPL",
+    "isoN": 524,
+    "pop2025": 30.5,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.005,
+      "eastAsian": 0.15,
+      "southAsian": 0.79,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.045
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 1.8,
+      "southAsian": 1.9,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.7
+    },
+    "cdr": 6,
+    "gdppc": 1300
+  },
+  "LKA": {
+    "name": "Sri Lanka",
+    "region": "southAsia",
+    "iso": "LKA",
+    "isoN": 144,
+    "pop2025": 22,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.005,
+      "eastAsian": 0.005,
+      "southAsian": 0.95,
+      "latinMestizo": 0,
+      "mena": 0.01,
+      "mixed": 0.025
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 1.3,
+      "southAsian": 1.8,
+      "latinMestizo": 1.6,
+      "mena": 1.8,
+      "mixed": 1.6
+    },
+    "cdr": 7,
+    "gdppc": 3800
+  },
+  "OMN": {
+    "name": "Oman",
+    "region": "middleEast",
+    "iso": "OMN",
+    "isoN": 512,
+    "pop2025": 5.2,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.01,
+      "eastAsian": 0.03,
+      "southAsian": 0.35,
+      "latinMestizo": 0,
+      "mena": 0.56,
+      "mixed": 0.045
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 2.6,
+      "mixed": 1.8
+    },
+    "cdr": 2.5,
+    "gdppc": 21000
+  },
+  "LBY": {
+    "name": "Libya",
+    "region": "northAfrica",
+    "iso": "LBY",
+    "isoN": 434,
+    "pop2025": 7,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.05,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.90,
+      "mixed": 0.035
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 2.2,
+      "mixed": 1.7
+    },
+    "cdr": 5,
+    "gdppc": 7000
+  },
+  "TUN": {
+    "name": "Tunisia",
+    "region": "northAfrica",
+    "iso": "TUN",
+    "isoN": 788,
+    "pop2025": 12,
+    "ethnicity": {
+      "european": 0.02,
+      "african": 0.01,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.93,
+      "mixed": 0.03
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 1.8,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 2.0,
+      "mixed": 1.7
+    },
+    "cdr": 6.5,
+    "gdppc": 3800
+  },
+  "AGO": {
+    "name": "Angola",
+    "region": "subSaharanAfrica",
+    "iso": "AGO",
+    "isoN": 24,
+    "pop2025": 36,
+    "ethnicity": {
+      "european": 0.01,
+      "african": 0.93,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0.005,
+      "mena": 0.005,
+      "mixed": 0.04
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 4.8,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 2.0
+    },
+    "cdr": 7.5,
+    "gdppc": 3200
+  },
+  "ZMB": {
+    "name": "Zambia",
+    "region": "subSaharanAfrica",
+    "iso": "ZMB",
+    "isoN": 894,
+    "pop2025": 20,
+    "ethnicity": {
+      "european": 0.01,
+      "african": 0.95,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.025
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 4.2,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 2.0
+    },
+    "cdr": 6.5,
+    "gdppc": 1300
+  },
+  "ZWE": {
+    "name": "Zimbabwe",
+    "region": "subSaharanAfrica",
+    "iso": "ZWE",
+    "isoN": 716,
+    "pop2025": 16,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.97,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.01
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 3.4,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 7.5,
+    "gdppc": 1700
+  },
+  "MLI": {
+    "name": "Mali",
+    "region": "subSaharanAfrica",
+    "iso": "MLI",
+    "isoN": 466,
+    "pop2025": 22.5,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.97,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.01
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 5.7,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 2.0
+    },
+    "cdr": 8.5,
+    "gdppc": 900
+  },
+  "NER": {
+    "name": "Niger",
+    "region": "subSaharanAfrica",
+    "iso": "NER",
+    "isoN": 562,
+    "pop2025": 26,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.97,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.01
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 6.7,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 2.0
+    },
+    "cdr": 8,
+    "gdppc": 600
+  },
+  "TCD": {
+    "name": "Chad",
+    "region": "subSaharanAfrica",
+    "iso": "TCD",
+    "isoN": 148,
+    "pop2025": 18,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.90,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.06,
+      "mixed": 0.025
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 5.5,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 2.0,
+      "mixed": 2.0
+    },
+    "cdr": 12,
+    "gdppc": 700
+  },
+  "SEN": {
+    "name": "Senegal",
+    "region": "subSaharanAfrica",
+    "iso": "SEN",
+    "isoN": 686,
+    "pop2025": 17.5,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.96,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.01,
+      "mixed": 0.015
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 4.2,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 5.5,
+    "gdppc": 1600
+  },
+  "GIN": {
+    "name": "Guinea",
+    "region": "subSaharanAfrica",
+    "iso": "GIN",
+    "isoN": 324,
+    "pop2025": 14,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.97,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.01
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 4.4,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 8,
+    "gdppc": 1200
+  },
+  "BFA": {
+    "name": "Burkina Faso",
+    "region": "subSaharanAfrica",
+    "iso": "BFA",
+    "isoN": 854,
+    "pop2025": 22.5,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.97,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.01
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 4.7,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 7.5,
+    "gdppc": 900
+  },
+  "NAM": {
+    "name": "Namibia",
+    "region": "subSaharanAfrica",
+    "iso": "NAM",
+    "isoN": 516,
+    "pop2025": 2.6,
+    "ethnicity": {
+      "european": 0.06,
+      "african": 0.87,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.055
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 3.2,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 7.5,
+    "gdppc": 5000
+  },
+  "BWA": {
+    "name": "Botswana",
+    "region": "subSaharanAfrica",
+    "iso": "BWA",
+    "isoN": 72,
+    "pop2025": 2.4,
+    "ethnicity": {
+      "european": 0.03,
+      "african": 0.93,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.025
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 2.6,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.7
+    },
+    "cdr": 8,
+    "gdppc": 7500
+  },
+  "SWZ": {
+    "name": "Eswatini",
+    "region": "subSaharanAfrica",
+    "iso": "SWZ",
+    "isoN": 748,
+    "pop2025": 1.2,
+    "ethnicity": {
+      "european": 0.01,
+      "african": 0.97,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.005
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 2.8,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.7
+    },
+    "cdr": 10,
+    "gdppc": 4000
+  },
+  "LSO": {
+    "name": "Lesotho",
+    "region": "subSaharanAfrica",
+    "iso": "LSO",
+    "isoN": 426,
+    "pop2025": 2.2,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.98,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 2.9,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.7
+    },
+    "cdr": 12,
+    "gdppc": 1100
+  },
+  "MRT": {
+    "name": "Mauritania",
+    "region": "subSaharanAfrica",
+    "iso": "MRT",
+    "isoN": 478,
+    "pop2025": 4.8,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.40,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.52,
+      "mixed": 0.065
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 4.0,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 3.8,
+      "mixed": 2.0
+    },
+    "cdr": 7.5,
+    "gdppc": 2000
+  },
+  "SOM": {
+    "name": "Somalia",
+    "region": "subSaharanAfrica",
+    "iso": "SOM",
+    "isoN": 706,
+    "pop2025": 18,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.90,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.06,
+      "mixed": 0.025
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 5.9,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 2.0,
+      "mixed": 2.0
+    },
+    "cdr": 11,
+    "gdppc": 500
+  },
+  "ERI": {
+    "name": "Eritrea",
+    "region": "subSaharanAfrica",
+    "iso": "ERI",
+    "isoN": 232,
+    "pop2025": 3.7,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.95,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.02,
+      "mixed": 0.015
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 3.6,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.8,
+      "mixed": 1.8
+    },
+    "cdr": 6.5,
+    "gdppc": 600
+  },
+  "CAF": {
+    "name": "Central African Republic",
+    "region": "subSaharanAfrica",
+    "iso": "CAF",
+    "isoN": 140,
+    "pop2025": 5.5,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.97,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.01
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 4.5,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 12,
+    "gdppc": 500
+  },
+  "COG": {
+    "name": "Republic of Congo",
+    "region": "subSaharanAfrica",
+    "iso": "COG",
+    "isoN": 178,
+    "pop2025": 6,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.97,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.01
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 4.2,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 7,
+    "gdppc": 2200
+  },
+  "GAB": {
+    "name": "Gabon",
+    "region": "subSaharanAfrica",
+    "iso": "GAB",
+    "isoN": 266,
+    "pop2025": 2.4,
+    "ethnicity": {
+      "european": 0.02,
+      "african": 0.94,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.025
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 3.4,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.7
+    },
+    "cdr": 6.5,
+    "gdppc": 8000
+  },
+  "GNQ": {
+    "name": "Equatorial Guinea",
+    "region": "subSaharanAfrica",
+    "iso": "GNQ",
+    "isoN": 226,
+    "pop2025": 1.7,
+    "ethnicity": {
+      "european": 0.005,
+      "african": 0.97,
+      "eastAsian": 0.005,
+      "southAsian": 0.005,
+      "latinMestizo": 0,
+      "mena": 0.005,
+      "mixed": 0.01
+    },
+    "tfr": {
+      "european": 1.5,
+      "african": 4.0,
+      "eastAsian": 1.3,
+      "southAsian": 1.6,
+      "latinMestizo": 1.6,
+      "mena": 1.6,
+      "mixed": 1.8
+    },
+    "cdr": 9,
+    "gdppc": 8500
   }
 };
 
@@ -4732,5 +5893,121 @@ export const COUNTRY_CENTROIDS = {
   "AZE": [
     47.6,
     40.1
+  ],
+  "MNG": [
+    103.8,
+    46.9
+  ],
+  "MMR": [
+    96.7,
+    21.9
+  ],
+  "LAO": [
+    102.5,
+    19.9
+  ],
+  "KHM": [
+    104.9,
+    12.6
+  ],
+  "NPL": [
+    84.1,
+    28.4
+  ],
+  "LKA": [
+    80.8,
+    7.9
+  ],
+  "OMN": [
+    55.9,
+    21
+  ],
+  "LBY": [
+    17.2,
+    26.3
+  ],
+  "TUN": [
+    9.5,
+    33.9
+  ],
+  "AGO": [
+    17.9,
+    -11.2
+  ],
+  "ZMB": [
+    27.8,
+    -13.1
+  ],
+  "ZWE": [
+    29.2,
+    -19.0
+  ],
+  "MLI": [
+    -4,
+    17.6
+  ],
+  "NER": [
+    8.1,
+    17.6
+  ],
+  "TCD": [
+    18.7,
+    15.5
+  ],
+  "SEN": [
+    -14.5,
+    14.5
+  ],
+  "GIN": [
+    -9.9,
+    9.9
+  ],
+  "BFA": [
+    -1.6,
+    12.4
+  ],
+  "BWA": [
+    25.9,
+    -22.3
+  ],
+  "SWZ": [
+    31.5,
+    -26.5
+  ],
+  "LSO": [
+    28.2,
+    -29.6
+  ],
+  "MRT": [
+    -10.9,
+    21
+  ],
+  "SOM": [
+    46.2,
+    5.2
+  ],
+  "ERI": [
+    39.8,
+    15.2
+  ],
+  "CAF": [
+    20.9,
+    6.6
+  ],
+  "COG": [
+    15.8,
+    -0.2
+  ],
+  "GAB": [
+    11.6,
+    -0.8
+  ],
+  "GNQ": [
+    10.3,
+    1.7
+  ],
+  "PNG": [
+    143.9,
+    -6.3
   ]
 };

@@ -8,7 +8,7 @@ export const SCENARIOS = {
         id: 'baseline',
         label: 'Baseline',
         description: 'Current trends extrapolated with moderate assumptions.',
-        icon: '📊',
+        icon: 'chart',
         params: {
             wageElasticity: 0.5,
             demoPressure: 0.3,
@@ -23,7 +23,7 @@ export const SCENARIOS = {
         id: 'highMigration',
         label: 'High Migration',
         description: 'Open borders, economic integration — 1.5× migration flows.',
-        icon: '🌍',
+        icon: 'globe',
         params: {
             wageElasticity: 0.7,
             demoPressure: 0.4,
@@ -38,7 +38,7 @@ export const SCENARIOS = {
         id: 'lowMigration',
         label: 'Low Migration',
         description: 'Restrictive policies, reduced flows — 0.5× migration.',
-        icon: '🔒',
+        icon: 'lock',
         params: {
             wageElasticity: 0.3,
             demoPressure: 0.2,
@@ -53,7 +53,7 @@ export const SCENARIOS = {
         id: 'highIntermixing',
         label: 'High Intermixing',
         description: 'Accelerated social integration — 2× intermarriage sensitivity.',
-        icon: '🤝',
+        icon: 'handshake',
         params: {
             wageElasticity: 0.5,
             demoPressure: 0.3,

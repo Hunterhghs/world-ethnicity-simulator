@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { COUNTRIES, ETHNIC_GROUPS } from '../data/countries.js';
 import { START_YEAR, END_YEAR, getSnapshot } from '../simulation/precompute.js';
+import Icon from './Icons.jsx';
 
 export default function CountryDetail({ code, snapshot, projections, scenario, year, onClose }) {
     const country = COUNTRIES[code];
@@ -153,7 +154,7 @@ export default function CountryDetail({ code, snapshot, projections, scenario, y
                 </div>
 
                 <div style={{ fontSize: 10, color: 'var(--text-muted)', textAlign: 'center' }}>
-                    ⚠️ Scenario projection under explicit assumptions — not a prediction.
+                    <Icon name="warning" size={10} /> Scenario projection under explicit assumptions — not a prediction.
                     Ethnic categories are broad continental/ancestral proxies.
                 </div>
             </div>

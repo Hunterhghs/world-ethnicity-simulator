@@ -2,6 +2,7 @@ import React from 'react';
 import Papa from 'papaparse';
 import { COUNTRIES, ETHNIC_GROUPS } from '../data/countries.js';
 import { START_YEAR, END_YEAR, getSnapshot } from '../simulation/precompute.js';
+import Icon from './Icons.jsx';
 
 export default function ExportButton({ projections, scenario }) {
     const handleExport = () => {
@@ -49,7 +50,7 @@ export default function ExportButton({ projections, scenario }) {
 
     return (
         <button className="export-btn" onClick={handleExport}>
-            <span>📥</span>
+            <Icon name="download" size={14} />
             <span>Export CSV ({scenario})</span>
         </button>
     );

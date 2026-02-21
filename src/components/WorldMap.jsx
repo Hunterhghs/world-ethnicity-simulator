@@ -21,43 +21,38 @@ for (const [code, c] of Object.entries(COUNTRIES)) {
     if (c.isoN) ISO_TO_CODE[c.isoN] = code;
 }
 
-function getDominantColor(shares) {
-    if (!shares) return '#1a2332';
-    let maxId = 'european';
-    let maxVal = 0;
-    for (const [id, val] of Object.entries(shares)) {
-        if (val > maxVal) {
-            maxVal = val;
-            maxId = id;
-        }
-    }
-    // Blend dominant color intensity based on share dominance
-    const base = ETHNIC_COLORS[maxId] || '#1a2332';
-    const color = d3.color(base);
-    if (!color) return base;
-    // More dominant = more saturated, less dominant = more muted
-    const opacity = 0.3 + maxVal * 0.7;
-    color.opacity = opacity;
-    return color.formatRgb();
-}
+// Threshold: if one group exceeds this, use solid color; otherwise use striped pattern
+const DOMINANCE_THRESHOLD = 0.65;
 
-function getBlendedColor(shares) {
-    if (!shares) return '#1a2332';
-    let r = 0, g = 0, b = 0;
-    for (const group of ETHNIC_GROUPS) {
-        const share = shares[group.id] || 0;
-        if (share < 0.005) continue;
-        const c = d3.color(group.color);
-        if (!c) continue;
-        r += c.r * share;
-        g += c.g * share;
-        b += c.b * share;
+function getDominantFill(shares) {
+    if (!shares) return { type: 'solid', color: '#1a2332' };
+
+    // Sort groups by share descending
+    const sorted = ETHNIC_GROUPS
+        .map(g => ({ id: g.id, color: g.color, share: shares[g.id] || 0 }))
+        .filter(g => g.share >= 0.01)
+        .sort((a, b) => b.share - a.share);
+
+    if (sorted.length === 0) return { type: 'solid', color: '#1a2332' };
+
+    // If dominant group above threshold, use solid with opacity
+    if (sorted[0].share >= DOMINANCE_THRESHOLD) {
+        const base = d3.color(sorted[0].color);
+        if (!base) return { type: 'solid', color: sorted[0].color };
+        const opacity = 0.4 + sorted[0].share * 0.6;
+        base.opacity = opacity;
+        return { type: 'solid', color: base.formatRgb() };
     }
-    return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
+
+    // Otherwise, create a stripe pattern from top 3 groups
+    const top = sorted.slice(0, 3);
+    const patternId = top.map(g => g.id).join('-');
+    return { type: 'pattern', patternId, groups: top };
 }
 
 export default function WorldMap({ snapshot, year, onCountryClick, selectedCountry }) {
     const svgRef = useRef(null);
+    const zoomGroupRef = useRef(null);
     const [worldData, setWorldData] = useState(null);
     const [tooltip, setTooltip] = useState(null);
     const [dimensions, setDimensions] = useState({ width: 960, height: 500 });
@@ -91,11 +86,57 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
         return { projection: proj, path: d3.geoPath(proj) };
     }, [dimensions]);
 
+    // Zoom behavior for mobile pan/pinch
+    useEffect(() => {
+        const svg = d3.select(svgRef.current);
+        if (!svg.node()) return;
+
+        const zoom = d3.zoom()
+            .scaleExtent([1, 8])
+            .translateExtent([[0, 0], [dimensions.width, dimensions.height]])
+            .on('zoom', (event) => {
+                d3.select(zoomGroupRef.current).attr('transform', event.transform);
+            });
+
+        svg.call(zoom);
+        // Reset zoom when dimensions change
+        svg.call(zoom.transform, d3.zoomIdentity);
+
+        return () => svg.on('.zoom', null);
+    }, [dimensions]);
+
     // Country features
     const countries = useMemo(() => {
         if (!worldData) return [];
         return topojson.feature(worldData, worldData.objects.countries).features;
     }, [worldData]);
+
+    // Build unique pattern definitions for diverse countries
+    const { fills, patternDefs } = useMemo(() => {
+        if (!snapshot) return { fills: {}, patternDefs: [] };
+
+        const fillMap = {};
+        const patternMap = {};
+
+        for (const feature of countries) {
+            const code = ISO_TO_CODE[feature.id];
+            const shares = code && snapshot?.countries[code]?.shares;
+            const fill = getDominantFill(shares);
+            fillMap[feature.id] = fill;
+
+            if (fill.type === 'pattern' && !patternMap[fill.patternId]) {
+                patternMap[fill.patternId] = fill.groups;
+            }
+        }
+
+        const defs = Object.entries(patternMap).map(([id, groups]) => {
+            const stripeWidth = 6;
+            const totalWidth = stripeWidth * groups.length;
+            return { id, groups, stripeWidth, totalWidth };
+        });
+
+        return { fills: fillMap, patternDefs: defs };
+    }, [snapshot, countries]);
 
     // Migration arcs: only top corridors by flow
     const migrationArcs = useMemo(() => {
@@ -142,71 +183,101 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
 
     return (
         <div className="map-container">
-            <svg ref={svgRef} width={dimensions.width} height={dimensions.height}>
-                {/* Graticule */}
-                <path
-                    d={path(d3.geoGraticule10())}
-                    fill="none"
-                    stroke="rgba(100,140,200,0.06)"
-                    strokeWidth="0.5"
-                />
-
-                {/* Countries */}
-                {countries.map(feature => {
-                    const code = ISO_TO_CODE[feature.id];
-                    const shares = code && snapshot?.countries[code]?.shares;
-                    const fill = shares ? getBlendedColor(shares) : '#1a2332';
-
-                    return (
-                        <path
-                            key={feature.id}
-                            d={path(feature)}
-                            fill={fill}
-                            className={`country ${selectedCountry === code ? 'selected' : ''}`}
-                            onMouseMove={(e) => handleMouseMove(e, feature)}
-                            onMouseLeave={handleMouseLeave}
-                            onClick={() => code && onCountryClick(code)}
-                        />
-                    );
-                })}
-
-                {/* Migration arcs */}
-                {migrationArcs.map((arc, i) => {
-                    const midX = (arc.fromXY[0] + arc.toXY[0]) / 2;
-                    const midY = Math.min(arc.fromXY[1], arc.toXY[1]) - 30;
-                    const d = `M${arc.fromXY[0]},${arc.fromXY[1]} Q${midX},${midY} ${arc.toXY[0]},${arc.toXY[1]}`;
-                    const thickness = Math.max(0.5, Math.min(3, arc.baseFlow / 100));
-                    const colors = getCorridorColors(arc.ethnicProfile);
-
-                    return (
-                        <g key={arc.id}>
-                            <path
-                                d={d}
-                                className="migration-arc"
-                                stroke="rgba(255,255,255,0.08)"
-                                strokeWidth={thickness}
-                            />
-                            {/* Multi-colored animated particles */}
-                            {colors.map((c, ci) => (
-                                <circle key={`${arc.id}-${c.id}`} r={Math.max(1.5, 3 * c.share)} fill={c.color} opacity="0.9">
-                                    <animateMotion
-                                        dur={`${3 + i * 0.15 + ci * 0.8}s`}
-                                        repeatCount="indefinite"
-                                        path={d}
+            <svg ref={svgRef} width={dimensions.width} height={dimensions.height} style={{ touchAction: 'none' }}>
+                <g ref={zoomGroupRef}>
+                    <defs>
+                        {/* Stripe patterns for diverse countries */}
+                        {patternDefs.map(p => (
+                            <pattern
+                                key={p.id}
+                                id={`eth-${p.id}`}
+                                patternUnits="userSpaceOnUse"
+                                width={p.totalWidth}
+                                height={p.totalWidth}
+                                patternTransform="rotate(45)"
+                            >
+                                {p.groups.map((g, i) => (
+                                    <rect
+                                        key={g.id}
+                                        x={i * p.stripeWidth}
+                                        y="0"
+                                        width={p.stripeWidth}
+                                        height={p.totalWidth}
+                                        fill={g.color}
+                                        opacity={0.6 + g.share * 0.4}
                                     />
-                                </circle>
-                            ))}
-                        </g>
-                    );
-                })}
+                                ))}
+                            </pattern>
+                        ))}
+                    </defs>
 
-                {/* Sphere outline */}
-                <path
-                    d={path({ type: 'Sphere' })}
-                    fill="none"
-                    stroke="rgba(100,140,200,0.15)"
-                    strokeWidth="1"
-                />
+                    {/* Graticule */}
+                    <path
+                        d={path(d3.geoGraticule10())}
+                        fill="none"
+                        stroke="rgba(100,140,200,0.06)"
+                        strokeWidth="0.5"
+                    />
+
+                    {/* Countries */}
+                    {countries.map(feature => {
+                        const fill = fills[feature.id] || { type: 'solid', color: '#1a2332' };
+                        const fillValue = fill.type === 'pattern'
+                            ? `url(#eth-${fill.patternId})`
+                            : fill.color;
+                        const code = ISO_TO_CODE[feature.id];
+
+                        return (
+                            <path
+                                key={feature.id}
+                                d={path(feature)}
+                                fill={fillValue}
+                                className={`country ${selectedCountry === code ? 'selected' : ''}`}
+                                onMouseMove={(e) => handleMouseMove(e, feature)}
+                                onMouseLeave={handleMouseLeave}
+                                onClick={() => code && onCountryClick(code)}
+                            />
+                        );
+                    })}
+
+                    {/* Migration arcs */}
+                    {migrationArcs.map((arc, i) => {
+                        const midX = (arc.fromXY[0] + arc.toXY[0]) / 2;
+                        const midY = Math.min(arc.fromXY[1], arc.toXY[1]) - 30;
+                        const d = `M${arc.fromXY[0]},${arc.fromXY[1]} Q${midX},${midY} ${arc.toXY[0]},${arc.toXY[1]}`;
+                        const thickness = Math.max(0.5, Math.min(3, arc.baseFlow / 100));
+                        const colors = getCorridorColors(arc.ethnicProfile);
+
+                        return (
+                            <g key={arc.id}>
+                                <path
+                                    d={d}
+                                    className="migration-arc"
+                                    stroke="rgba(255,255,255,0.08)"
+                                    strokeWidth={thickness}
+                                />
+                                {/* Multi-colored animated particles */}
+                                {colors.map((c, ci) => (
+                                    <circle key={`${arc.id}-${c.id}`} r={Math.max(1.5, 3 * c.share)} fill={c.color} opacity="0.9">
+                                        <animateMotion
+                                            dur={`${3 + i * 0.15 + ci * 0.8}s`}
+                                            repeatCount="indefinite"
+                                            path={d}
+                                        />
+                                    </circle>
+                                ))}
+                            </g>
+                        );
+                    })}
+
+                    {/* Sphere outline */}
+                    <path
+                        d={path({ type: 'Sphere' })}
+                        fill="none"
+                        stroke="rgba(100,140,200,0.15)"
+                        strokeWidth="1"
+                    />
+                </g>
             </svg>
 
             {/* Tooltip */}

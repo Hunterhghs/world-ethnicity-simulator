@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import Icon from './Icons.jsx';
 
 const DRIVERS = [
-    { id: 'policyOpenness', label: 'Policy Openness', icon: '🌐', min: 0, max: 200, default: 100, unit: '%' },
-    { id: 'migrationIntensity', label: 'Migration Intensity', icon: '✈️', min: 0, max: 200, default: 100, unit: '%' },
-    { id: 'intermarriageSensitivity', label: 'Intermarriage Rate', icon: '💑', min: 0, max: 200, default: 100, unit: '%' },
-    { id: 'fertilityAdjust', label: 'Fertility Adjustment', icon: '👶', min: 50, max: 150, default: 100, unit: '%' },
+    { id: 'policyOpenness', label: 'Policy Openness', iconName: 'policy', min: 0, max: 200, default: 100, unit: '%' },
+    { id: 'migrationIntensity', label: 'Migration Intensity', iconName: 'migration', min: 0, max: 200, default: 100, unit: '%' },
+    { id: 'intermarriageSensitivity', label: 'Intermarriage Rate', iconName: 'intermarriage', min: 0, max: 200, default: 100, unit: '%' },
+    { id: 'fertilityAdjust', label: 'Fertility Adjustment', iconName: 'fertility', min: 50, max: 150, default: 100, unit: '%' },
 ];
 
 export default function DriverControls() {
@@ -19,14 +20,14 @@ export default function DriverControls() {
     return (
         <div className="panel">
             <div className="panel-header">
-                <span className="panel-icon">⚙️</span>
+                <Icon name="settings" size={16} />
                 <span className="panel-title">Driver Controls</span>
             </div>
             {DRIVERS.map(driver => (
                 <div key={driver.id} className="driver-control">
                     <div className="driver-label">
                         <span className="driver-name">
-                            <span>{driver.icon}</span> {driver.label}
+                            <Icon name={driver.iconName} size={14} /> {driver.label}
                         </span>
                         <span className="driver-value">{values[driver.id]}{driver.unit}</span>
                     </div>
