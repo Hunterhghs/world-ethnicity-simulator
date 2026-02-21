@@ -15,10 +15,13 @@ function getCorridorColors(ethnicProfile) {
 
 const WORLD_ATLAS_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
-// Map numeric ISO to our country codes
+// Map numeric ISO to our country codes (TopoJSON uses zero-padded string IDs like '076')
 const ISO_TO_CODE = {};
 for (const [code, c] of Object.entries(COUNTRIES)) {
-    if (c.isoN) ISO_TO_CODE[c.isoN] = code;
+    if (c.isoN) ISO_TO_CODE[c.isoN] = code;  // numeric key
+}
+function isoLookup(featureId) {
+    return ISO_TO_CODE[parseInt(featureId, 10)];
 }
 
 // Threshold: if one group exceeds this, use solid color; otherwise use striped pattern
@@ -142,7 +145,7 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
         if (!snapshot) return {};
         const fillMap = {};
         for (const feature of countries) {
-            const code = ISO_TO_CODE[feature.id];
+            const code = isoLookup(feature.id);
             const shares = code && snapshot?.countries[code]?.shares;
             fillMap[feature.id] = getDominantFill(shares);
         }
@@ -165,7 +168,7 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
     }, [snapshot, projection]);
 
     const handleMouseMove = (e, feature) => {
-        const code = ISO_TO_CODE[feature.id];
+        const code = isoLookup(feature.id);
         if (!code || !snapshot?.countries[code]) {
             setTooltip(null);
             return;
@@ -209,7 +212,7 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
                     {/* Countries */}
                     {countries.map(feature => {
                         const fillColor = fills[feature.id] || '#1a2332';
-                        const code = ISO_TO_CODE[feature.id];
+                        const code = isoLookup(feature.id);
 
                         return (
                             <path
