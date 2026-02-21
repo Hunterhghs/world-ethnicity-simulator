@@ -127,7 +127,7 @@ export const COUNTRIES = {
     "gdppc": 52000
   },
   "FRA": {
-    "name": "France",
+    "name": "France (incl. overseas)",
     "region": "europe",
     "iso": "FRA",
     "isoN": 250,
