@@ -5285,6 +5285,22 @@ export const COUNTRIES = {
   }
 };
 
+// Post-process: For Latin American countries, fold most of the "European" share
+// (which represents Spanish/Portuguese colonial ancestry) into "Latin American / Mestizo".
+// Keep a small 5% residual for genuinely non-Iberian European immigrants.
+const LATIN_REGIONS = new Set(['latinAmerica', 'southAmerica']);
+for (const [code, country] of Object.entries(COUNTRIES)) {
+  if (LATIN_REGIONS.has(country.region) && country.ethnicity) {
+    const euroShare = country.ethnicity.european || 0;
+    const residual = Math.min(euroShare, 0.05); // keep up to 5% as European
+    const transfer = euroShare - residual;
+    if (transfer > 0) {
+      country.ethnicity.european = residual;
+      country.ethnicity.latinMestizo = (country.ethnicity.latinMestizo || 0) + transfer;
+    }
+  }
+}
+
 export const COUNTRY_CENTROIDS = {
   "USA": [
     -98.5,
