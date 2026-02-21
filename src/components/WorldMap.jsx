@@ -104,7 +104,7 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
 
     // Projection & path — centered properly with padding
     const { projection, path } = useMemo(() => {
-        const pad = 10;
+        const pad = 2;
         const w = dimensions.width - pad * 2;
         const h = dimensions.height - pad * 2;
         const proj = d3.geoNaturalEarth1()

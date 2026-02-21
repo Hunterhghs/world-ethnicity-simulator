@@ -34,8 +34,8 @@
   /* ── Layout ── */
   --header-height: 56px;
   --sidebar-width: 320px;
-  --kpi-height: 80px;
-  --controls-height: 64px;
+  --kpi-height: 68px;
+  --controls-height: 52px;
 
   /* ── Typography ── */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
