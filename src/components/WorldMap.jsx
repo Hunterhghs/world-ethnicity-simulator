@@ -105,15 +105,15 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
         return () => ro.disconnect();
     }, []);
 
-    // Projection & path — fit map to container, respecting aspect ratio
-    const EARTH_ASPECT = 1.93; // Natural Earth projection width:height ratio
+    // Projection & path — use full container, fitExtent centers automatically
     const svgWidth = dimensions.width;
-    const svgHeight = Math.min(dimensions.height, dimensions.width / EARTH_ASPECT);
+    const svgHeight = dimensions.height;
 
     const { projection, path } = useMemo(() => {
-        const pad = 2;
+        const pad = 4;
         const w = svgWidth - pad * 2;
         const h = svgHeight - pad * 2;
+        if (w <= 0 || h <= 0) return { projection: d3.geoNaturalEarth1(), path: d3.geoPath() };
         const proj = d3.geoNaturalEarth1()
             .fitExtent([[pad, pad], [pad + w, pad + h]], { type: 'Sphere' });
         return { projection: proj, path: d3.geoPath(proj) };
@@ -201,7 +201,7 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
 
     return (
         <div className="map-container">
-            <svg ref={svgRef} width={svgWidth} height={svgHeight} style={{ touchAction: 'none', display: 'block' }}>
+            <svg ref={svgRef} viewBox={`0 0 ${svgWidth} ${svgHeight}`} style={{ width: '100%', height: '100%', touchAction: 'none', display: 'block' }}>
                 <g ref={zoomGroupRef}>
 
 
