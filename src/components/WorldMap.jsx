@@ -172,13 +172,30 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
     }, [snapshot, projection]);
 
     const handleMouseMove = (e, feature) => {
-        const code = isoLookup(feature.id);
+        let code = isoLookup(feature.id);
         if (!code || !snapshot?.countries[code]) {
             setTooltip(null);
             return;
         }
+
+        // French Guiana override: TopoJSON bundles it with France (ID 250)
+        // Detect if cursor is over South America and swap to GUF data
+        if (code === 'FRA' && projection) {
+            const svgEl = svgRef.current;
+            if (svgEl) {
+                const rect = svgEl.getBoundingClientRect();
+                const svgX = (e.clientX - rect.left) * (svgWidth / rect.width);
+                const svgY = (e.clientY - rect.top) * (svgHeight / rect.height);
+                const lonLat = projection.invert([svgX, svgY]);
+                if (lonLat && lonLat[0] < -50 && lonLat[1] > -6 && lonLat[1] < 10) {
+                    code = 'GUF';
+                }
+            }
+        }
+
         const data = snapshot.countries[code];
         const country = COUNTRIES[code];
+        if (!data || !country) { setTooltip(null); return; }
         setTooltip({
             x: e.clientX,
             y: e.clientY,

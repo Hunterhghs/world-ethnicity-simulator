@@ -160,11 +160,11 @@ export const COUNTRIES = {
     "isoN": 254,
     "pop2025": 0.31,
     "ethnicity": {
-      "european": 0.12,
-      "african": 0.35,
-      "eastAsian": 0.05,
-      "southAsian": 0.02,
-      "latinMestizo": 0.35,
+      "european": 0.005,
+      "african": 0.10,
+      "eastAsian": 0.02,
+      "southAsian": 0.005,
+      "latinMestizo": 0.76,
       "mena": 0.01,
       "mixed": 0.10
     },
