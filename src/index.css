@@ -901,13 +901,14 @@ body {
 @media (max-width: 1024px) {
   .app {
     grid-template-columns: 1fr;
-    grid-template-rows: 44px 1fr auto auto;
+    grid-template-rows: 44px 1fr 52px 52px;
     grid-template-areas:
       "header"
       "map"
       "kpi"
       "controls";
-    overflow-y: auto;
+    height: 100dvh;
+    overflow: hidden;
   }
 
   /* Compact header */
@@ -940,39 +941,44 @@ body {
 
   /* Map fills available space */
   .map-container {
-    min-height: 35vh;
+    min-height: 0;
+    overflow: hidden;
   }
 
-  /* KPI horizontal scroll */
+  /* KPI horizontal scroll — compact */
   .kpi-strip {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
-    gap: var(--gap-sm);
-    padding: var(--gap-sm) var(--gap-md);
+    gap: var(--gap-xs);
+    padding: 4px var(--gap-sm);
+    align-items: center;
   }
 
   .kpi-card {
-    min-width: 110px;
+    min-width: 100px;
     scroll-snap-align: start;
     flex-shrink: 0;
-    padding: 6px var(--gap-sm);
+    padding: 4px var(--gap-sm);
   }
 
   .kpi-value {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .kpi-label {
+    font-size: 7px;
+  }
+
+  .kpi-sub {
     font-size: 8px;
   }
 
-  /* Time controls - sticky at bottom */
+  /* Time controls - fixed at bottom, always visible */
   .time-controls {
-    padding: 6px var(--gap-md);
+    padding: 4px var(--gap-md);
     gap: var(--gap-sm);
-    position: sticky;
-    bottom: 0;
+    background: var(--bg-secondary);
     z-index: 50;
   }
 
