@@ -25,7 +25,7 @@ for (const [code, c] of Object.entries(COUNTRIES)) {
 const DOMINANCE_THRESHOLD = 0.65;
 
 function getDominantFill(shares) {
-    if (!shares) return { type: 'solid', color: '#1a2332' };
+    if (!shares) return '#1a2332';
 
     // Sort groups by share descending
     const sorted = ETHNIC_GROUPS
@@ -33,21 +33,47 @@ function getDominantFill(shares) {
         .filter(g => g.share >= 0.01)
         .sort((a, b) => b.share - a.share);
 
-    if (sorted.length === 0) return { type: 'solid', color: '#1a2332' };
+    if (sorted.length === 0) return '#1a2332';
 
-    // If dominant group above threshold, use solid with opacity
+    // If dominant group above threshold, use its color directly
     if (sorted[0].share >= DOMINANCE_THRESHOLD) {
         const base = d3.color(sorted[0].color);
-        if (!base) return { type: 'solid', color: sorted[0].color };
-        const opacity = 0.4 + sorted[0].share * 0.6;
-        base.opacity = opacity;
-        return { type: 'solid', color: base.formatRgb() };
+        if (!base) return sorted[0].color;
+        const brightness = 0.4 + sorted[0].share * 0.6;
+        return `rgb(${Math.round(base.r * brightness)}, ${Math.round(base.g * brightness)}, ${Math.round(base.b * brightness)})`;
     }
 
-    // Otherwise, create a stripe pattern from top 3 groups
-    const top = sorted.slice(0, 3);
-    const patternId = top.map(g => g.id).join('-');
-    return { type: 'pattern', patternId, groups: top };
+    // Blend top group colors weighted by share, then desaturate toward grey
+    let r = 0, g = 0, b = 0, totalWeight = 0;
+    const top = sorted.slice(0, 4);
+    for (const group of top) {
+        const c = d3.color(group.color);
+        if (!c) continue;
+        r += c.r * group.share;
+        g += c.g * group.share;
+        b += c.b * group.share;
+        totalWeight += group.share;
+    }
+    if (totalWeight > 0) {
+        r /= totalWeight;
+        g /= totalWeight;
+        b /= totalWeight;
+    }
+
+    // Desaturate: pull toward grey by mixing with luminance
+    const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+    const desat = 0.35; // 35% toward grey
+    r = r + (lum - r) * desat;
+    g = g + (lum - g) * desat;
+    b = b + (lum - b) * desat;
+
+    // Slightly brighten to avoid muddy darks
+    const boost = 1.15;
+    r = Math.min(255, r * boost);
+    g = Math.min(255, g * boost);
+    b = Math.min(255, b * boost);
+
+    return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
 }
 
 export default function WorldMap({ snapshot, year, onCountryClick, selectedCountry }) {
@@ -111,31 +137,16 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
         return topojson.feature(worldData, worldData.objects.countries).features;
     }, [worldData]);
 
-    // Build unique pattern definitions for diverse countries
-    const { fills, patternDefs } = useMemo(() => {
-        if (!snapshot) return { fills: {}, patternDefs: [] };
-
+    // Build fill colors for each country
+    const fills = useMemo(() => {
+        if (!snapshot) return {};
         const fillMap = {};
-        const patternMap = {};
-
         for (const feature of countries) {
             const code = ISO_TO_CODE[feature.id];
             const shares = code && snapshot?.countries[code]?.shares;
-            const fill = getDominantFill(shares);
-            fillMap[feature.id] = fill;
-
-            if (fill.type === 'pattern' && !patternMap[fill.patternId]) {
-                patternMap[fill.patternId] = fill.groups;
-            }
+            fillMap[feature.id] = getDominantFill(shares);
         }
-
-        const defs = Object.entries(patternMap).map(([id, groups]) => {
-            const stripeWidth = 6;
-            const totalWidth = stripeWidth * groups.length;
-            return { id, groups, stripeWidth, totalWidth };
-        });
-
-        return { fills: fillMap, patternDefs: defs };
+        return fillMap;
     }, [snapshot, countries]);
 
     // Migration arcs: only top corridors by flow
@@ -185,31 +196,7 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
         <div className="map-container">
             <svg ref={svgRef} width={dimensions.width} height={dimensions.height} style={{ touchAction: 'none' }}>
                 <g ref={zoomGroupRef}>
-                    <defs>
-                        {/* Stripe patterns for diverse countries */}
-                        {patternDefs.map(p => (
-                            <pattern
-                                key={p.id}
-                                id={`eth-${p.id}`}
-                                patternUnits="userSpaceOnUse"
-                                width={p.totalWidth}
-                                height={p.totalWidth}
-                                patternTransform="rotate(45)"
-                            >
-                                {p.groups.map((g, i) => (
-                                    <rect
-                                        key={g.id}
-                                        x={i * p.stripeWidth}
-                                        y="0"
-                                        width={p.stripeWidth}
-                                        height={p.totalWidth}
-                                        fill={g.color}
-                                        opacity={0.6 + g.share * 0.4}
-                                    />
-                                ))}
-                            </pattern>
-                        ))}
-                    </defs>
+
 
                     {/* Graticule */}
                     <path
@@ -221,17 +208,14 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
 
                     {/* Countries */}
                     {countries.map(feature => {
-                        const fill = fills[feature.id] || { type: 'solid', color: '#1a2332' };
-                        const fillValue = fill.type === 'pattern'
-                            ? `url(#eth-${fill.patternId})`
-                            : fill.color;
+                        const fillColor = fills[feature.id] || '#1a2332';
                         const code = ISO_TO_CODE[feature.id];
 
                         return (
                             <path
                                 key={feature.id}
                                 d={path(feature)}
-                                fill={fillValue}
+                                fill={fillColor}
                                 className={`country ${selectedCountry === code ? 'selected' : ''}`}
                                 onMouseMove={(e) => handleMouseMove(e, feature)}
                                 onMouseLeave={handleMouseLeave}
