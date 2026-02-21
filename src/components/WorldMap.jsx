@@ -105,15 +105,19 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
         return () => ro.disconnect();
     }, []);
 
-    // Projection & path — centered properly with padding
+    // Projection & path — fit map to container, respecting aspect ratio
+    const EARTH_ASPECT = 1.93; // Natural Earth projection width:height ratio
+    const svgWidth = dimensions.width;
+    const svgHeight = Math.min(dimensions.height, dimensions.width / EARTH_ASPECT);
+
     const { projection, path } = useMemo(() => {
         const pad = 2;
-        const w = dimensions.width - pad * 2;
-        const h = dimensions.height - pad * 2;
+        const w = svgWidth - pad * 2;
+        const h = svgHeight - pad * 2;
         const proj = d3.geoNaturalEarth1()
             .fitExtent([[pad, pad], [pad + w, pad + h]], { type: 'Sphere' });
         return { projection: proj, path: d3.geoPath(proj) };
-    }, [dimensions]);
+    }, [svgWidth, svgHeight]);
 
     // Zoom behavior for mobile pan/pinch
     useEffect(() => {
@@ -122,7 +126,7 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
 
         const zoom = d3.zoom()
             .scaleExtent([1, 8])
-            .translateExtent([[0, 0], [dimensions.width, dimensions.height]])
+            .translateExtent([[0, 0], [svgWidth, svgHeight]])
             .on('zoom', (event) => {
                 d3.select(zoomGroupRef.current).attr('transform', event.transform);
             });
@@ -132,7 +136,7 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
         svg.call(zoom.transform, d3.zoomIdentity);
 
         return () => svg.on('.zoom', null);
-    }, [dimensions]);
+    }, [svgWidth, svgHeight]);
 
     // Country features
     const countries = useMemo(() => {
@@ -197,7 +201,7 @@ export default function WorldMap({ snapshot, year, onCountryClick, selectedCount
 
     return (
         <div className="map-container">
-            <svg ref={svgRef} width={dimensions.width} height={dimensions.height} style={{ touchAction: 'none' }}>
+            <svg ref={svgRef} width={svgWidth} height={svgHeight} style={{ touchAction: 'none', display: 'block' }}>
                 <g ref={zoomGroupRef}>
 
 
